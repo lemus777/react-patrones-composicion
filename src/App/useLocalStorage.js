@@ -25,7 +25,7 @@ function useLocalStorage(itemName, initialValue) {
           setError(error);
         }
       }, 3000);
-    });
+    }, []); // al enviar como segundo parámetro array vacío hace que se ejecute sólo una vez en vez de cada 3 segundos del setTimeout
   
     const saveItem = (newItem) => { // funcion para actualizar estado con persistencia
       try {
