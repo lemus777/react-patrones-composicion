@@ -1,6 +1,7 @@
 import React from "react";
 
 function useLocalStorage(itemName, initialValue) {
+    const [sincronizedItem, setSincronizedItem] = React.useState(true);
     const [error, setError] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
     const [item, setItem] = React.useState(initialValue);
@@ -21,11 +22,12 @@ function useLocalStorage(itemName, initialValue) {
   
           setItem(parsedItem);
           setLoading(false);
+          setSincronizedItem(true);
         } catch(error) {
           setError(error);
         }
       }, 3000);
-    }, []); // al enviar como segundo parámetro array vacío hace que se ejecute sólo una vez en vez de cada 3 segundos del setTimeout
+    }, [sincronizedItem]);
   
     const saveItem = (newItem) => { // funcion para actualizar estado con persistencia
       try {
@@ -36,12 +38,18 @@ function useLocalStorage(itemName, initialValue) {
         setError(error);
       }
     };
+
+    const sincronizeItem = () => {
+      setLoading(true);
+      setSincronizedItem(false);
+    }
   
     return {
       item,
       saveItem,
       loading,
       error,
+      sincronizeItem,
     }; // tenemos que usar return para que cuando la funcion App llame a esta funcion (useLocalStorage) le devuelva los dos valores que necesita, y también devuelve información de si está cargando o de si hay algún error
   }
 
