@@ -50,23 +50,26 @@ function useTodos() { // hacemos un custom hook
         saveTodos(newTodos); //vamos a actualizar el estado de todos para que sea igual a newTodos
       };
 
-    return(
-        {
-          loading,
-          error,
-          totalTodos,
-          completedTodos,
-          searchValue,
-          setSearchValue,
-          searchedTodos,
-          addTodo,
-          completeTodo,
-          deleteTodo,
-          openModal,
-          setOpenModal,
-          sincronizeTodos,
-        }
-    );
+      const state = {
+        loading,
+        error,
+        totalTodos,
+        completedTodos,
+        searchValue,
+        searchedTodos,
+        openModal,
+      };
+
+      const stateUpdaters = {
+        setSearchValue,
+        addTodo,
+        completeTodo,
+        deleteTodo,
+        setOpenModal,
+        sincronizeTodos,
+      }
+
+    return { state, stateUpdaters };
 }
 
 export { useTodos };
