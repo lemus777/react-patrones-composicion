@@ -60,22 +60,14 @@ function App() {
       onEmptySearchResults={
         (searchText) => <p>No hay resultados para {searchText}</p>
       }
-//      render={todo => (
-//        <TodoItem 
-//          key={todo.text} 
-//          text={todo.text} 
-//          completed={todo.completed}
-//          onComplete={() => completeTodo(todo.text)} // con onComplete mandamos a la función completeTodos el texto de ese todo
-//          onDelete={() => deleteTodo(todo.text)} 
-//        />
-//        )}
+
     >
       {todo => (
         <TodoItem 
           key={todo.text} 
           text={todo.text} 
           completed={todo.completed}
-          onComplete={() => completeTodo(todo.text)} // con onComplete mandamos a la función completeTodos el texto de ese todo
+          onComplete={() => completeTodo(todo.text)} // con onComplete mandamos a la función completeTodo el texto de ese todo
           onDelete={() => deleteTodo(todo.text)} 
         />
         )}
